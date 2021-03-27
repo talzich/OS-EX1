@@ -1,7 +1,11 @@
 C=gcc
 
 .PHONY: all
-all: main1 main2
+all: main1 main2 main3
+
+# task3
+main3: libHello.so hello_ariel.h main1_3.c
+	$(C) main1_3.c -fPIC -ldl -o main3
 
 # task2
 main2: libHello.so
@@ -10,7 +14,7 @@ main2: libHello.so
 
 	
 libHello.so: hello_ariel.h hello_ariel.c
-	$(C) -o libHello.so -shared -fPIC hello_ariel.c
+	$(C) -shared hello_ariel.c -fPIC -o libHello.so
 
 # task1	
 main1: main1.o hello.o
